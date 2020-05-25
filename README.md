@@ -60,6 +60,8 @@ List<RiderOnlineData> getGrid(Category category, int year, RaceCode raceCode);
 List<RiderOnlineData> getRaceResults(Category category, int year, RaceCode raceCode);
 ```
 
+Before using these methods, read the RaceCode enum class to select the correct raceCode.
+
 *Example:*
 
 ```java
