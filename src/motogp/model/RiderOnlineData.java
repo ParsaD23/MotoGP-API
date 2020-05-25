@@ -2,33 +2,40 @@ package motogp.model;
 
 public class RiderOnlineData {
 	private int number;
+	private String name;
+	private String team;
 	private int position;
-	private Constructor constructor;
 
-	public RiderOnlineData(int number, int position, Constructor constructor) {
+	public RiderOnlineData(int number, String name, String team, int position) {
 		this.number = number;
+		this.name = name;
+		this.team = team;
 		this.position = position;
-		this.constructor = constructor;
 	}
 
 	public int getNumber() {
 		return number;
 	}
 
-	public int getPosition() {
-		return position;
+	public String getName() {
+		return name;
 	}
 
-	public Constructor getConstructor() {
-		return constructor;
+	public String getTeam() {
+		return team;
+	}
+
+	public int getPosition() {
+		return position;
 	}
 
 	@Override
 	public String toString() {
 		return "RiderOnlineData{" +
 				"number=" + number +
+				", name='" + name + '\'' +
+				", team='" + team + '\'' +
 				", position=" + position +
-				", constructor=" + constructor +
 				'}';
 	}
 }

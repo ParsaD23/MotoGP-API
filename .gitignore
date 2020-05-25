@@ -1,3 +1,5 @@
 .idea/
 out/
 MotoGP-API.iml
+test/
+src/motogp/model/Constructor.java

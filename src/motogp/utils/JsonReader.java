@@ -1,5 +1,6 @@
-package motogp.controller;
+package motogp.utils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -8,7 +9,15 @@ import java.net.URL;
 
 public class JsonReader {
 
-	public static JSONObject readJsonFromUrl(String refererUrl, String url, String originUrl) throws IOException {
+	/**
+	 *
+	 * @param url URL of the JSON to request
+	 * @param refererUrl Header attribute
+	 * @param originUrl Header attribute
+	 * @return String
+	 * @throws IOException
+	 */
+	public static String readJsonFromUrl(String url, String refererUrl, String originUrl) throws IOException {
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection)obj.openConnection();
 
@@ -32,8 +41,6 @@ public class JsonReader {
 		}
 		in.close();
 
-		JSONObject json = new JSONObject(response.toString());
-
-		return json;
+		return response.toString();
 	}
 }
