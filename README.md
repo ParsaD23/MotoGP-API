@@ -101,7 +101,7 @@ An object of *RiderOnlineData* contains the following information:
 
 ## Future Updates
 
-*Future updated wil be written here...*
+*Future updates will be written here...*
 
 ## License
 
