@@ -1,7 +1,6 @@
 # MotoGP-API
 
 MotoGP-API is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
-
 The current version has been developed and tested to read the data from [Motorsport Stats](https://results.motorsportstats.com/series/motogp/).
 
 ### Available data
