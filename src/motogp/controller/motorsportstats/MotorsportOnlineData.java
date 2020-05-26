@@ -68,11 +68,20 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 		JSONArray races = new JSONArray(JsonReader.readJsonFromUrl(urlRequest, referer, origin));
 
 		// Searches the URL code of the selected race
+		int flag = 0;
 		for (int i = 0; i<races.length(); i++){
 			JSONObject event = races.getJSONObject(i).getJSONObject("event");
 			if (event.getString("code").equals(code.toString())){
 				grandprix = event.getString("uuid");
 				break;
+			} else if (event.getString("code").equals("JPN") && code.equals(RaceCode.PAC) && (year == 2003 || year == 2002)) {
+				if (flag == 0) {
+					flag++;
+					continue;
+				} else {
+					grandprix = event.getString("uuid");
+					break;
+				}
 			}
 		}
 
@@ -95,13 +104,17 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 			int position = rider.getInt("finishPosition"); // 0 if not classified
 			String name = rider.getJSONArray("drivers").getJSONObject(0).getString("name");
 			String team = rider.getJSONObject("team").getString("name");
-			int number = rider.getInt("carNumber");
+			int number; // In case the number is not available, this value will be -1
+			try{
+				number = rider.getInt("carNumber");
+			} catch (Exception e){
+				//e.printStackTrace();
+				number = -1;
+			}
 
 			result.add(new RiderOnlineData(number, name, team, position));
 		}
-
 		return result;
-
 	}
 
 	/**
@@ -134,16 +147,24 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 			}
 
 			// Gets the button of the selected session based on its text
-			for (Element temp : Jsoup.connect(baseURL).get().getElementsByClass("_1CDKX").get(1).getAllElements()) {
+			int found = 0;
+			for (Element temp : Jsoup.connect(baseURL).get().getElementsByClass("_1CDKX").get(1).children()) {
 				if (temp.text().equals(sessionName)) {
 					mainResult = temp;
+					found++;
 					break;
 				}
 			}
 
+			if (found == 0){
+				System.out.println("\nThe requested session or data (" + sessionName + ") is not available for the " + year + " season...");
+			}
+
 			// Gets the urlCode to request the JSONObject from the website
 			String[] temp = mainResult.attr("href").split("/");
+
 			String urlCode = temp[temp.length - 1];
+			System.out.println(urlCode);
 			String url = URL_JSON_SESSIONS + urlCode + "/classification";
 			result = new JSONObject(JsonReader.readJsonFromUrl(url, baseURL, URL_JSON_SESSIONS));
 

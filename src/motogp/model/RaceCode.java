@@ -1,31 +1,52 @@
 package motogp.model;
 
 public enum RaceCode {
-	QAT, // Qatar
-	ARG, // Argentina
 	AME, // Austin
 	USA, // Austin 2016-2017, Laguna Seca
+	IND, // Indianapolis
+
+	ESP, // Jerez
+	CAT, // Catalunya
+	MAD, // Madrid
+	ARA, // Aragon
+	VAL, // Valencia
+
+	JPN, // Motegi from 2004, Suzuka until 2003
+	PAC, // Motegi until 2003
+
+	ITA, // Mugello
+	SMR, // San Marino
+	NAT, // Nations
+
+	FRG, // West Germany
+	GDR, // East Germany
+	DEU, // Sachsenring
+
+	ULS, // Ulster
+	CHE, // Switzerland
+	IOM, // Isle of Man
+	VEN, // Venezuela
+	BEL, // Belgium
+	SWE, // Sweden
+	YUG, // Yugoslavia
+	HUN, // Hungary
+	EUR, // Europe
+	QAT, // Qatar
+	ARG, // Argentina
 	PRT, // Estoril
 	CHN, // China
-	IND, // Indianapolis
 	TUR, // Turkey
 	ZAF, // Africas
 	BRA, // Brazil
-	ESP, // Jerez
 	FRA, // Le Mans
-	ITA, // Mugello
-	CAT, // Catalunya
 	NLD, // Assen
-	DEU, // Sachsenring
 	CZE, // Brno
 	AUT, // Austria
 	GBR, // Silverstone
-	SMR, // San Marino
-	ARA, // Aragon
 	FIN, // Finland
 	THA, // Thailand
-	JPN, // Motegi
-	AUS, // Philip Island
+	IDN, // Indonesian
 	MYL, // Sepang
-	VAL; // Valencia
+	AUS, // Philip Island
+
 }
