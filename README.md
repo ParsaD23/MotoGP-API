@@ -46,7 +46,7 @@ MotoGPData data = new MotoGPData();
 
 ### RiderOnlineData
 
-This class is used in the **Session results methods**.
+This class is used in the [Session results methods](https://github.com/ParsaD23/MotoGP-API#session-result-methods).
 An object of *RiderOnlineData* contains the following information:
 
 * **Number**: Integer value that represents the race number of a rider; this value is "-1" in case the data is not available
@@ -56,7 +56,7 @@ An object of *RiderOnlineData* contains the following information:
 
 ### RiderStandingsData
 
-This class is used in the **Championship standings methods**
+This class is used in the [Championship standings methods](https://github.com/ParsaD23/MotoGP-API#championship-standings-methods).
 An object of *RiderStandingsData* contains the following information:
 
 * **Position**: Integer value
