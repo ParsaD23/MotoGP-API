@@ -33,7 +33,7 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 
 		try {
 			// Requests the JSON object from the website
-			JSONObject jsonObject = getJsonObject(category, year, code, session);
+			JSONObject jsonObject = getJsonObjectResults(category, year, code, session);
 
 			// Converts the JSON object into a list of RiderOnlineData
 			JSONArray gridJSON = jsonObject.getJSONArray("details");
@@ -43,6 +43,65 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 		} finally {
 			return result;
 		}
+	}
+
+	/**
+	 * If the standings are not available, an empty List will be returned.
+	 * @param category
+	 * @param year
+	 * @return
+	 */
+	@Override
+	public List<RiderStandingsData> getChampionshipStandings(Category category, int year) {
+		List<RiderStandingsData> standings = new ArrayList<>();
+
+		try{
+			// Requests the JSONArray from the website
+			JSONArray jsonArray = getJsonArrayStandings(category, year);
+
+			// Converts the JSONArray into a list of RiderStandingsData
+			standings = getRiderStandingsList(jsonArray);
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			return standings;
+		}
+
+	}
+
+	private List<RiderStandingsData> getRiderStandingsList(JSONArray standings) {
+		List<RiderStandingsData> result = new ArrayList<>();
+
+		for (int i = 0; i<standings.length(); i++){
+			JSONObject rider = standings.getJSONObject(i);
+
+			String name = rider.getJSONObject("driver").getString("name");
+			int position = rider.getInt("position");
+			double points = rider.getDouble("totalPoints");
+
+			result.add(new RiderStandingsData(name, position, points));
+		}
+		return result;
+	}
+
+	private JSONArray getJsonArrayStandings(Category category, int year) {
+		JSONArray result = new JSONArray();
+
+		try {
+			String url;
+			if (category == Category.MotoGP)
+				url = URL_JSON_SEASONS + year + "-" + category.toString().toLowerCase() + "/standings/drivers";
+			else
+				url = URL_JSON_SEASONS + category.toString().toLowerCase() + "-" + year + "/standings/drivers";
+
+			String refer = URL + "series/" + category.toString().toLowerCase();
+			result = (new JSONObject(JsonReader.readJsonFromUrl(url, refer, URL))).getJSONArray("standings");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	/**
@@ -125,7 +184,7 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 	 * @param session
 	 * @return JSONObject with the classification data
 	 */
-	private JSONObject getJsonObject(Category category, int year, RaceCode code, Session session) {
+	private JSONObject getJsonObjectResults(Category category, int year, RaceCode code, Session session) {
 		JSONObject result = new JSONObject();
 
 		try {

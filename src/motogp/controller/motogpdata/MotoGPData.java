@@ -1,10 +1,7 @@
 package motogp.controller.motogpdata;
 
 import motogp.controller.motorsportstats.MotorsportOnlineData;
-import motogp.model.RaceCode;
-import motogp.model.RiderOnlineData;
-import motogp.model.Category;
-import motogp.model.Session;
+import motogp.model.*;
 
 import java.util.List;
 
@@ -117,4 +114,14 @@ public class MotoGPData {
 	public List<RiderOnlineData> getRaceResults(Category category, int year, RaceCode code){
 		return data.getResults(category, year, code, Session.RACE);
 	}
+	/**
+	 * If the standings are not available, an empty List will be returned.
+	 * @param category
+	 * @param year
+	 * @return
+	 */
+	public List<RiderStandingsData> getChampionshipStandings(Category category, int year){
+		return data.getChampionshipStandings(category, year);
+	}
+
 }
