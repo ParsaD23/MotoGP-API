@@ -1,21 +1,43 @@
 # MotoGP-API
 
-MotoGP-API is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
+**MotoGP-API** is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
 The current version has been developed and tested to read the data from [Motorsport Stats](https://results.motorsportstats.com/series/motogp/).
+
+**Race results example (2019 MotoGP Qatar Grand Prix):**
+
+| Pos | No  | Rider            | Nat           | Team                         | Laps | Time (ms) |
+|:---:|:---:|:---------------- |:------------- |:---------------------------- |:----:|:---------:|
+| 1   | 4   | Andrea Dovizioso | Italy         | Mission Winnow Ducati        | 22   | 2556902   |
+| 2   | 93  | Marc Márquez     | Spain         | Repsol Honda Team            | 22   | 2556925   |
+| 3   | 35  | Cal Crutchlow    | Great Britain | LCR Honda Castrol            | 22   | 2557222   |
+| 4   | 42  | Álex Rins        | Spain         | Team Suzuki ECSTAR           | 22   | 2557359   |
+| 5   | 46  | Valentino Rossi  | Italy         | Monster Energy Yamaha MotoGP | 22   | 2557502   |
+
+**Championship standings example (2019 season):**
+
+| Pos | Rider            | Points |
+|:---:|:---------------- |:------:|
+| 1   | Marc Márquez     | 420.0  |
+| 2   | Andrea Dovizioso | 269.0  |
+| 3   | Maverick Viñales | 211.0  |
+| 4   | Álex Rins        | 205.0  |
+| 5   | Fabio Quartararo | 192.0  |
 
 ### Available data
 
 * Classes
-    * Moto3: 2012 - today
-    * Moto2: 2010 - today
-    * MotoGP/500cc: 1949 - today
+  
+  * Moto3: 2012 - today
+  * Moto2: 2010 - today
+  * MotoGP/500cc: 1949 - today
 
 * Sessions
-    * Free practices
-    * Qualifying practices
-    * Grid
-    * Race
-    
+  
+  * Free practices
+  * Qualifying practices
+  * Grid
+  * Race
+
 * Riders' championship standings
 
 ## Getting Started
@@ -36,7 +58,7 @@ Import them into your project.
 *Important: remember that some sessions have not always existed in the MotoGP calendar, or the data may not be available on the website. 
 In that case an empty List will be returned.*
 
-In order to read the data define and initialize a new variable of *MotoGPData*:
+In order to read the data define and initialize a new variable of `MotoGPData`:
 
 ```java
 MotoGPData data = new MotoGPData();
@@ -44,120 +66,83 @@ MotoGPData data = new MotoGPData();
 
 *It is recommended to use this class in order not to change your code in case of updates.*
 
-### RiderOnlineData
+### Classes
 
-This class is used in the [Session results methods](https://github.com/ParsaD23/MotoGP-API#session-result-methods).
-An object of *RiderOnlineData* contains the following information:
+#### RiderOnlineData
 
-* **Number**: Integer value that represents the race number of a rider; this value is "-1" in case the data is not available
-* **Name**: String value
-* **Position**: Integer value that represents the position of a rider; this value is "0" in case the rider did not classify or did not finish the race
-* **Team**: String value
+This class is used in the [MotoGPData](https://github.com/ParsaD23/MotoGP-API#motogpdata).
+An object of `RiderOnlineData` contains the following information:
 
-### RiderStandingsData
+| Parameter     | Type     | Description                                                                         | Example                        |
+|:-------------:|:--------:|:----------------------------------------------------------------------------------- |:------------------------------:|
+| `number`      | `int`    | Race number of a rider; `-1` in case the data is not available                      | `46`                           |
+| `name`        | `String` | Rider's name                                                                        | `Valentino Rossi`              |
+| `nationality` | `String` | Rider's nationality                                                                 | `Italy`                        |
+| `team`        | `String` | Rider's team name                                                                   | `Monster Energy Yamaha MotoGP` |
+| `position`    | `int`    | Rider's position; `0` in case the rider did not classify or did not finish the race | `5`                            |
+| `time`        | `int`    | Lap time or the total race time in milliseconds                                     | `2557502`                      |
+| `laps`        | `int`    | Number of completed laps                                                            | `22`                           |
 
-This class is used in the [Championship standings methods](https://github.com/ParsaD23/MotoGP-API#championship-standings-methods).
-An object of *RiderStandingsData* contains the following information:
+#### RiderStandingsData
 
-* **Position**: Integer value
-* **Name**: String value
-* **Points**: Double value
+This class is used in the [MotoGPData](https://github.com/ParsaD23/MotoGP-API#motogpdata).
+An object of `RiderStandingsData` contains the following information:
 
-### Session result methods
+| Paramter   | Type     | Description          | Example        |
+|:----------:|:--------:| -------------------- |:--------------:|
+| `name`     | `String` | Rider's name         | `Marc Márquez` |
+| `position` | `int`    | Rider's position     | `1`            |
+| `points`   | `double` | Rider's total points | `420.0`        |
 
-Each method returns a list of *RiderOnlineData*:
+#### MotoGPData
 
-```java
-List<RiderOnlineData> getFreePractice1(Category category, int year, RaceCode code);
-List<RiderOnlineData> getFreePractice2(Category category, int year, RaceCode code);
-List<RiderOnlineData> getFreePractice3(Category category, int year, RaceCode code);
-List<RiderOnlineData> getFreePractice4(Category category, int year, RaceCode code);
-List<RiderOnlineData> getQualifying1(Category category, int year, RaceCode code);
-List<RiderOnlineData> getQualifying2(Category category, int year, RaceCode code);
-List<RiderOnlineData> getQualifying(Category category, int year, RaceCode code);
-List<RiderOnlineData> getGrid(Category category, int year, RaceCode raceCode);
-List<RiderOnlineData> getRaceResults(Category category, int year, RaceCode raceCode);
-```
-
-Before using these methods, read the RaceCode enum class to select the correct raceCode.
-
-***Example:***
+Each method returns a list of `RiderOnlineData`:
 
 ```java
-List<RiderOnlineData> qualifying = data.getQualifying(Category.MotoGP, 2000, RaceCode.ESP);
-List<RiderOnlineData> grid = data.getGrid(Category.Moto2, 2019, RaceCode.QAT);
-List<RiderOnlineData> raceResults = data.getRaceResults(Category.MotoGP, 2015, RaceCode.ITA);
-```
-
-Results of the MotoGP class at Mugello in 2019 printed:
-
-```text
-===================== RACE RESULTS =====================
-1	Danilo Petrucci		9	Mission Winnow Ducati
-2	Marc Márquez		93	Repsol Honda Team
-3	Andrea Dovizioso	4	Mission Winnow Ducati
-4	Álex Rins		42	Team Suzuki ECSTAR
-5	Takaaki Nakagami	30	LCR Honda IDEMITSU
-6	Maverick Viñales	12	Monster Energy Yamaha MotoGP
-7	Michele Pirro		51	Mission Winnow Ducati
-8	Cal Crutchlow		35	LCR Honda Castrol
-9	Pol Espargaró		44	Red Bull KTM Factory Racing
-10	Fabio Quartararo	20	Petronas Yamaha SRT
-[...]
-```
-
-### Championship standings methods
-
-```java
+List<RiderOnlineData> getResultsByRaceCode(Category category, int year, RaceCode raceCode, Session session);
+List<RiderOnlineData> getResultsByRaceNumber(Category category, int year, int raceNumber, Session session);
 List<RiderStandingsData> getChampionshipStandings(Category category, int year);
 ```
 
+Before using these methods, read the `RaceCode` enum class to select the correct raceCode.
+
 ***Example:***
 
 ```java
+List<RiderOnlineData> race = data.getResultsByRaceNumber(Category.MotoGP, 2019, 1, Session.RACE);
+List<RiderOnlineData> qp2 = data.getResultsByRaceCode(Category.MotoGP, 2019, RaceCode.QAT, Session.QP2)
 List<RiderStandingsData> standings = data.getChampionshipStandings(Category.MotoGP, 2019);
-```
-
-Standings of the 2019 MotoGP season printed:
-
-```text
-========== STANDINGS ==========
-1	Marc Márquez		420.0
-2	Andrea Dovizioso	269.0
-3	Maverick Viñales	211.0
-4	Álex Rins               205.0
-5	Fabio Quartararo	192.0
-6	Danilo Petrucci		176.0
-7	Valentino Rossi		174.0
-8	Jack Miller	        165.0
-9	Cal Crutchlow		133.0
-10	Franco Morbidelli	115.0
-[...]
 ```
 
 ## Release History
 
 * **v1.0**
-    * First release
-
+  
+  * First release
 
 * **v2.0** (Not compatible with the previous version)
-    * *RiderOnlineData* contains more information
-    * Free Practices, Qualifying Practices and Warm-up added
-    * Moto3 and Moto2 classes added
-    * Coverage of all Moto3 seasons (2012 - today)
-    * Coverage of all Moto2 seasons (2010 - today)
-    * Coverage of multiple MotoGP season (2005 - today)
-    * Improved project structure
-
+  
+  * `RiderOnlineData` contains more information
+  * Free Practices, Qualifying Practices and Warm-up added
+  * Moto3 and Moto2 classes added
+  * Coverage of all Moto3 seasons (2012 - today)
+  * Coverage of all Moto2 seasons (2010 - today)
+  * Coverage of multiple MotoGP season (2005 - today)
+  * Improved project structure
 
 * **v2.0.1**
-    * Added 1949 - 2004 MotoGP/500cc seasons
-    * Bug fix
-    
-    
+  
+  * Added 1949 - 2004 MotoGP/500cc seasons
+  * Bug fix
+
 * **v2.1**
-    * Championship standings results added
+  
+  * Championship standings results added
+  
+* **v2.2**
+  
+  * New methods
+  * More information in `RiderOnlineData`
 
 ## Future Updates
 

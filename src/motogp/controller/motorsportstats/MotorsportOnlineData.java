@@ -19,8 +19,12 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 	private static final String URL_JSON_SESSIONS = "https://mssproxy.motorsportstats.com/web/3.0.0/sessions/";
 	private static final String URL_JSON_SEASONS = "https://mssproxy.motorsportstats.com/web/3.0.0/seasons/";
 
+	private RaceCode raceCode= null;
+	private int raceNumber = -1;
+
+
 	/**
-	 * If the results are not available or the selected session does not exist, getResults() will return an empty list.
+	 * If the results are not available or the selected session does not exist, this method will return an empty list.
 	 * @param category
 	 * @param year
 	 * @param code
@@ -28,12 +32,13 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 	 * @return
 	 */
 	@Override
-	public List<RiderOnlineData> getResults(Category category, int year, RaceCode code, Session session) {
+	public List<RiderOnlineData> getResultsByRaceCode(Category category, int year, RaceCode code, Session session) {
 		List<RiderOnlineData> result = new ArrayList<>();
 
 		try {
 			// Requests the JSON object from the website
-			JSONObject jsonObject = getJsonObjectResults(category, year, code, session);
+			raceCode = code;
+			JSONObject jsonObject = getJsonObjectResults(category, year, session);
 
 			// Converts the JSON object into a list of RiderOnlineData
 			JSONArray gridJSON = jsonObject.getJSONArray("details");
@@ -41,6 +46,39 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 		} catch (Exception e){
 			e.printStackTrace();
 		} finally {
+			// Reset of the values before returning the results
+			raceCode = null;
+			raceNumber = -1;
+			return result;
+		}
+	}
+
+	/**
+	 * If the results are not available or the selected session does not exist, this method will return an empty list.
+	 * @param category
+	 * @param year
+	 * @param raceNumber
+	 * @param session
+	 * @return
+	 */
+	@Override
+	public List<RiderOnlineData> getResultsByRaceNumber(Category category, int year, int raceNumber, Session session) {
+		List<RiderOnlineData> result = new ArrayList<>();
+
+		try {
+			// Requests the JSON object from the website
+			this.raceNumber = raceNumber;
+			JSONObject jsonObject = getJsonObjectResults(category, year, session);
+
+			// Converts the JSON object into a list of RiderOnlineData
+			JSONArray gridJSON = jsonObject.getJSONArray("details");
+			result = getRiderList(gridJSON);
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			// Reset of the values before returning the results
+			raceCode = null;
+			this.raceNumber = -1;
 			return result;
 		}
 	}
@@ -108,10 +146,9 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 	 * Returns the URL of the requested grandprix
 	 * @param category
 	 * @param year
-	 * @param code
 	 * @return String with the URL
 	 */
-	private String getCompleteURL(Category category, int year, RaceCode code) throws IOException {
+	private String getCompleteURL(Category category, int year) throws IOException {
 		String result = URL;
 		String grandprix = "";
 
@@ -126,18 +163,31 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 		String origin = URL;
 		JSONArray races = new JSONArray(JsonReader.readJsonFromUrl(urlRequest, referer, origin));
 
-		// Searches the URL code of the selected race
-		int flag = 0;
-		for (int i = 0; i<races.length(); i++){
-			JSONObject event = races.getJSONObject(i).getJSONObject("event");
-			if (event.getString("code").equals(code.toString())){
-				grandprix = event.getString("uuid");
-				break;
-			} else if (event.getString("code").equals("JPN") && code.equals(RaceCode.PAC) && (year == 2003 || year == 2002)) {
-				if (flag == 0) {
-					flag++;
-					continue;
-				} else {
+
+		if (raceCode != null) {
+			int flag = 0;
+			for (int i = 0; i<races.length(); i++) {
+				JSONObject event = races.getJSONObject(i).getJSONObject("event");
+				if (event.getString("code").equals(raceCode.toString())) {
+					grandprix = event.getString("uuid");
+					break;
+				}
+				// The Motorsport Stats' website uses the same race code for two different races in the 2002 and 2003 seasons
+				else if (event.getString("code").equals("JPN") && raceCode.equals(RaceCode.PAC) && (year == 2003 || year == 2002)) {
+					if (flag == 0) {
+						flag++;
+						continue;
+					} else {
+						grandprix = event.getString("uuid");
+						break;
+					}
+				}
+			}
+		} else if (raceNumber > 0) {
+			for (int i = 0; i<races.length(); i++) {
+				JSONObject event = races.getJSONObject(i).getJSONObject("event");
+				if (raceNumber == i + 1) {
+					System.out.println("Selected raceCode: " + event.getString("code"));
 					grandprix = event.getString("uuid");
 					break;
 				}
@@ -162,7 +212,17 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 
 			int position = rider.getInt("finishPosition"); // 0 if not classified
 			String name = rider.getJSONArray("drivers").getJSONObject(0).getString("name");
+			int time = rider.getInt("time"); // 0 if not available
+			int laps = rider.getInt("laps"); // 0 if not available
 			String team = rider.getJSONObject("team").getString("name");
+
+			String nationality;
+			try{
+				nationality = rider.getJSONObject("nationality").getString("name");
+			}catch (Exception e){
+				nationality = "Not Available";
+			}
+
 			int number; // In case the number is not available, this value will be -1
 			try{
 				number = rider.getInt("carNumber");
@@ -171,7 +231,7 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 				number = -1;
 			}
 
-			result.add(new RiderOnlineData(number, name, team, position));
+			result.add(new RiderOnlineData(number, name, nationality, team, position, time, laps));
 		}
 		return result;
 	}
@@ -180,15 +240,14 @@ public class MotorsportOnlineData implements MotoGPOnlineData {
 	 * Reads the requested classification from the MotorsportStats website
 	 * @param category
 	 * @param year
-	 * @param code
 	 * @param session
 	 * @return JSONObject with the classification data
 	 */
-	private JSONObject getJsonObjectResults(Category category, int year, RaceCode code, Session session) {
+	private JSONObject getJsonObjectResults(Category category, int year, Session session) {
 		JSONObject result = new JSONObject();
 
 		try {
-			String baseURL = getCompleteURL(category, year, code);
+			String baseURL = getCompleteURL(category, year);
 			Element mainResult = null;
 
 			String sessionName = "";
