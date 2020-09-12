@@ -6,9 +6,11 @@ public enum RaceCode {
 	IND, // Indianapolis
 
 	ESP, // Jerez
+	AND, // Andalucia
 	CAT, // Catalunya
 	MAD, // Madrid
 	ARA, // Aragon
+	TER, // Teruel
 	VAL, // Valencia
 
 	JPN, // Motegi from 2004, Suzuka until 2003
@@ -16,37 +18,41 @@ public enum RaceCode {
 
 	ITA, // Mugello
 	SMR, // San Marino
+	EML, // Emilia Romagna
 	NAT, // Nations
 
 	FRG, // West Germany
 	GDR, // East Germany
 	DEU, // Sachsenring
 
-	ULS, // Ulster
-	CHE, // Switzerland
-	IOM, // Isle of Man
-	VEN, // Venezuela
-	BEL, // Belgium
-	SWE, // Sweden
-	YUG, // Yugoslavia
-	HUN, // Hungary
-	EUR, // Europe
-	QAT, // Qatar
-	ARG, // Argentina
-	PRT, // Estoril
-	CHN, // China
-	TUR, // Turkey
-	ZAF, // Africas
-	BRA, // Brazil
-	FRA, // Le Mans
-	NLD, // Assen
-	CZE, // Brno
 	AUT, // Austria
-	GBR, // Silverstone
-	FIN, // Finland
-	THA, // Thailand
-	IDN, // Indonesian
-	MYL, // Sepang
-	AUS, // Philip Island
+	STY, // Styria
 
+	PRT, // Estoril
+	POR, // Portugal
+
+	ARG, // Argentina
+	AUS, // Philip Island
+	BEL, // Belgium
+	BRA, // Brazil
+	CHE, // Switzerland
+	CHN, // China
+	CZE, // Brno
+	EUR, // Europe
+	FIN, // Finland
+	FRA, // Le Mans
+	GBR, // Silverstone
+	HUN, // Hungary
+	IDN, // Indonesian
+	IOM, // Isle of Man
+	MYL, // Sepang
+	NLD, // Assen
+	QAT, // Qatar
+	SWE, // Sweden
+	THA, // Thailand
+	TUR, // Turkey
+	ULS, // Ulster
+	VEN, // Venezuela
+	YUG, // Yugoslavia
+	ZAF, // Africas
 }
