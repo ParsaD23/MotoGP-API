@@ -64,7 +64,23 @@ In order to read the data define and initialize a new variable of `MotoGPData`:
 MotoGPData data = new MotoGPData();
 ```
 
-*It is recommended to use this class in order not to change your code in case of updates.*
+`MotoGPData` methods:
+
+```java
+List<RiderOnlineData> getResultsByRaceCode(Category category, int year, RaceCode raceCode, Session session);
+List<RiderOnlineData> getResultsByRaceNumber(Category category, int year, int raceNumber, Session session);
+List<RiderStandingsData> getChampionshipStandings(Category category, int year);
+```
+
+Before using these methods, read the `RaceCode` enum class to select the correct raceCode.
+
+***Example:***
+
+```java
+List<RiderOnlineData> race = data.getResultsByRaceNumber(Category.MotoGP, 2019, 1, Session.RACE);
+List<RiderOnlineData> qp2 = data.getResultsByRaceCode(Category.MotoGP, 2019, RaceCode.QAT, Session.QP2)
+List<RiderStandingsData> standings = data.getChampionshipStandings(Category.MotoGP, 2019);
+```
 
 ### Classes
 
@@ -93,26 +109,6 @@ An object of `RiderStandingsData` contains the following information:
 | `name`     | `String` | Rider's name         | `Marc Márquez` |
 | `position` | `int`    | Rider's position     | `1`            |
 | `points`   | `double` | Rider's total points | `420.0`        |
-
-#### MotoGPData
-
-Each method returns a list of `RiderOnlineData`:
-
-```java
-List<RiderOnlineData> getResultsByRaceCode(Category category, int year, RaceCode raceCode, Session session);
-List<RiderOnlineData> getResultsByRaceNumber(Category category, int year, int raceNumber, Session session);
-List<RiderStandingsData> getChampionshipStandings(Category category, int year);
-```
-
-Before using these methods, read the `RaceCode` enum class to select the correct raceCode.
-
-***Example:***
-
-```java
-List<RiderOnlineData> race = data.getResultsByRaceNumber(Category.MotoGP, 2019, 1, Session.RACE);
-List<RiderOnlineData> qp2 = data.getResultsByRaceCode(Category.MotoGP, 2019, RaceCode.QAT, Session.QP2)
-List<RiderStandingsData> standings = data.getChampionshipStandings(Category.MotoGP, 2019);
-```
 
 ## Release History
 
