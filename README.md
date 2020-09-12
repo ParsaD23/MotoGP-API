@@ -72,7 +72,7 @@ List<RiderOnlineData> getResultsByRaceNumber(Category category, int year, int ra
 List<RiderStandingsData> getChampionshipStandings(Category category, int year);
 ```
 
-Before using the `getResultsByRaceNumber()` method, read the `RaceCode` enum class to select the correct raceCode or check the [Motorsport Stats](https://results.motorsportstats.com/series/motogp/) website.
+Before using the `getResultsByRaceCode()` method, read the `RaceCode` enum class to select the correct raceCode or check the [Motorsport Stats](https://results.motorsportstats.com/series/motogp/) website.
 
 ***Example:***
 
