@@ -86,7 +86,7 @@ List<RiderStandingsData> standings = data.getChampionshipStandings(Category.Moto
 
 #### RiderOnlineData
 
-This class is used in the [MotoGPData](https://github.com/ParsaD23/MotoGP-API#motogpdata).
+This class is used in the `MotoGPData` methods.
 An object of `RiderOnlineData` contains the following information:
 
 | Parameter     | Type     | Description                                                                         | Example                        |
@@ -101,7 +101,7 @@ An object of `RiderOnlineData` contains the following information:
 
 #### RiderStandingsData
 
-This class is used in the [MotoGPData](https://github.com/ParsaD23/MotoGP-API#motogpdata).
+This class is used in the `MotoGPData` methods.
 An object of `RiderStandingsData` contains the following information:
 
 | Paramter   | Type     | Description          | Example        |
