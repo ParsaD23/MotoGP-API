@@ -1,7 +1,7 @@
 # MotoGP-API
 
 Current version: `3.0` \
-Latest update: November 12, 2020 \
+Latest update: November 12, 2020
 
 ## Contents
 * [Home](https://github.com/ParsaD23/MotoGP-API/wiki)
