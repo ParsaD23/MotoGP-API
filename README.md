@@ -1,6 +1,6 @@
 # MotoGP-API
 
-Current version: `3.0`
+Current version: `3.0` \
 Latest update: November 12, 2020
 
 **MotoGP-API** is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
