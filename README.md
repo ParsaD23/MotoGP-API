@@ -1,5 +1,8 @@
 # MotoGP-API
 
+Current version: `3.0`
+Latest update: November 12, 2020
+
 **MotoGP-API** is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
 The current version has been developed and tested to read the data from [Motorsport Stats](https://results.motorsportstats.com/series/motogp/).
 
@@ -40,6 +43,10 @@ The current version has been developed and tested to read the data from [Motorsp
 
 * Riders' championship standings
 
+* Constructors' championship standings
+
+* Teams' championship standings
+
 ## Getting Started
 
 In order to use this library, import the latest [motogpapi-x.x.jar](https://github.com/ParsaD23/MotoGP-API/releases) release into your project.
@@ -55,94 +62,7 @@ Import them into your project.
 
 ## Usage
 
-*Important: remember that some sessions have not always existed in the MotoGP calendar, or the data may not be available on the website. 
-In that case an empty List will be returned.*
-
-In order to read the data define and initialize a new variable of `MotoGPData`:
-
-```java
-MotoGPData data = new MotoGPData();
-```
-
-`MotoGPData` methods:
-
-```java
-List<RiderOnlineData> getResultsByRaceCode(Category category, int year, RaceCode raceCode, Session session);
-List<RiderOnlineData> getResultsByRaceNumber(Category category, int year, int raceNumber, Session session);
-List<RiderStandingsData> getChampionshipStandings(Category category, int year);
-```
-
-Before using the `getResultsByRaceNumber()` method, read the `RaceCode` enum class to select the correct raceCode or check the [Motorsport Stats](https://results.motorsportstats.com/series/motogp/) website.
-
-***Example:***
-
-```java
-List<RiderOnlineData> race = data.getResultsByRaceNumber(Category.MotoGP, 2019, 1, Session.RACE);
-List<RiderOnlineData> qp2 = data.getResultsByRaceCode(Category.MotoGP, 2019, RaceCode.QAT, Session.QP2)
-List<RiderStandingsData> standings = data.getChampionshipStandings(Category.MotoGP, 2019);
-```
-
-### Classes
-
-#### RiderOnlineData
-
-This class is used in the [MotoGPData](https://github.com/ParsaD23/MotoGP-API#motogpdata).
-An object of `RiderOnlineData` contains the following information:
-
-| Parameter     | Type     | Description                                                                         | Example                        |
-|:-------------:|:--------:|:----------------------------------------------------------------------------------- |:------------------------------:|
-| `number`      | `int`    | Race number of a rider; `-1` in case the data is not available                      | `46`                           |
-| `name`        | `String` | Rider's name                                                                        | `Valentino Rossi`              |
-| `nationality` | `String` | Rider's nationality                                                                 | `Italy`                        |
-| `team`        | `String` | Rider's team name                                                                   | `Monster Energy Yamaha MotoGP` |
-| `position`    | `int`    | Rider's position; `0` in case the rider did not classify or did not finish the race | `5`                            |
-| `time`        | `int`    | Lap time or the total race time in milliseconds                                     | `2557502`                      |
-| `laps`        | `int`    | Number of completed laps                                                            | `22`                           |
-
-#### RiderStandingsData
-
-This class is used in the [MotoGPData](https://github.com/ParsaD23/MotoGP-API#motogpdata).
-An object of `RiderStandingsData` contains the following information:
-
-| Paramter   | Type     | Description          | Example        |
-|:----------:|:--------:| -------------------- |:--------------:|
-| `name`     | `String` | Rider's name         | `Marc Márquez` |
-| `position` | `int`    | Rider's position     | `1`            |
-| `points`   | `double` | Rider's total points | `420.0`        |
-
-## Release History
-
-* **v1.0**
-  
-  * First release
-
-* **v2.0** (Not compatible with the previous version)
-  
-  * `RiderOnlineData` contains more information
-  * Free Practices, Qualifying Practices and Warm-up added
-  * Moto3 and Moto2 classes added
-  * Coverage of all Moto3 seasons (2012 - today)
-  * Coverage of all Moto2 seasons (2010 - today)
-  * Coverage of multiple MotoGP season (2005 - today)
-  * Improved project structure
-
-* **v2.0.1**
-  
-  * Added 1949 - 2004 MotoGP/500cc seasons
-  * Bug fix
-
-* **v2.1**
-  
-  * Championship standings results added
-  
-* **v2.2**
-  
-  * New methods
-  * More information in `RiderOnlineData`
-
-## Future Updates
-
-*Future updates will be written here...*
+Look at the [wiki page](https://github.com/ParsaD23/MotoGP-API/wiki) for a detailed description.
 
 ## License
 

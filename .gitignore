@@ -2,4 +2,4 @@
 out/
 MotoGP-API.iml
 test/
-src/motogp/model/Constructor.java
+src/com/github/parsad23/motogpapi/domain/RaceCode.java

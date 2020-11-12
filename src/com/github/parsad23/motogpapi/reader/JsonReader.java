@@ -1,13 +1,10 @@
-package motogp.utils;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+package com.github.parsad23.motogpapi.reader;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class JsonReader {
+class JsonReader {
 
 	/**
 	 *
@@ -31,8 +28,8 @@ public class JsonReader {
 //		con.setRequestProperty("Cache-Control", "max-age=0");
 
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
+		//System.out.println("\nSending 'GET' request to URL : " + url);
+		//System.out.println("Response Code : " + responseCode);
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer response = new StringBuffer();
