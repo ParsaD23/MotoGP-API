@@ -1,7 +1,14 @@
 # MotoGP-API
 
 Current version: `3.0` \
-Latest update: November 12, 2020
+Latest update: November 12, 2020 \
+
+## Contents
+* [Home](https://github.com/ParsaD23/MotoGP-API/wiki)
+* [Getting Started](https://github.com/ParsaD23/MotoGP-API/wiki/1.-Getting-Started)
+* [Domain Classes](https://github.com/ParsaD23/MotoGP-API/wiki/2.-Domain-classes)
+* [Usage](https://github.com/ParsaD23/MotoGP-API/wiki/3.-Usage)
+* [Release History](https://github.com/ParsaD23/MotoGP-API/wiki/4.-Release-History)
 
 **MotoGP-API** is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
 The current version has been developed and tested to read the data from [Motorsport Stats](https://results.motorsportstats.com/series/motogp/).
