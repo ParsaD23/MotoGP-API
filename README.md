@@ -56,7 +56,7 @@ The current version has been developed and tested to read the data from [Motorsp
 
 ## Getting Started
 
-In order to use this library, import the latest [motogpapi-x.x.jar](https://github.com/ParsaD23/MotoGP-API/releases) release into your project.
+In order to use this library, import the latest motogpapi-x.x.jar release into your proejct and the url_configuration.properties file the main folder of your project (both in the [release section](https://github.com/ParsaD23/MotoGP-API/releases)).
 
 ### Prerequisites
 
