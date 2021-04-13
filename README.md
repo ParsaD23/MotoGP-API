@@ -4,6 +4,7 @@ Current version: `3.0.1` \
 Latest update: April 13, 2021
 
 ## Contents
+
 * [Home](https://github.com/ParsaD23/MotoGP-API/wiki)
 * [Getting Started](https://github.com/ParsaD23/MotoGP-API/wiki/1.-Getting-Started)
 * [Domain Classes](https://github.com/ParsaD23/MotoGP-API/wiki/2.-Domain-classes)
@@ -25,13 +26,13 @@ The current version has been developed and tested to read the data from [Motorsp
 
 **Championship standings example (2019 season):**
 
-| Pos | Rider            | Points |
-|:---:|:---------------- |:------:|
-| 1   | Marc Márquez     | 420.0  |
-| 2   | Andrea Dovizioso | 269.0  |
-| 3   | Maverick Viñales | 211.0  |
-| 4   | Álex Rins        | 205.0  |
-| 5   | Fabio Quartararo | 192.0  |
+| Pos | Rider            | Points | Results                         |
+|:---:|:---------------- |:------:|:------------------------------- |
+| 1   | Marc Márquez     | 420.0  | `[20.0, 25.0, 0.0, 25.0, ...]`  |
+| 2   | Andrea Dovizioso | 269.0  | `[25.0, 16.0, 13.0, 13.0, ...]` |
+| 3   | Maverick Viñales | 211.0  | `[9.0, 0.0, 5.0, 16.0, ...]`    |
+| 4   | Álex Rins        | 205.0  | `[13.0, 11.0, 25.0, 20.0, ...]` |
+| 5   | Fabio Quartararo | 192.0  | `[0.0, 8.0, 9.0, 0.0, ...]`     |
 
 ### Available data
 

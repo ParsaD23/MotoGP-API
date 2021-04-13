@@ -13,20 +13,9 @@ import java.util.Properties;
 
 class URLGenerator {
 
-    private final String url_json_seasons;
-    private final String url_json_sessions;
-    private final String base_url;
-
-    protected URLGenerator () throws IOException {
-        try {
-            Properties prop = PropertiesReader.readPropertiesFile("url_configuration.properties");
-            base_url = prop.getProperty("base_url");
-            url_json_seasons = prop.getProperty("url_json_seasons");
-            url_json_sessions = prop.getProperty("url_json_sessions");
-        } catch (IOException e){
-            throw new IOException("Unable to read the url_configuration.properties file...");
-        }
-    }
+    private final String url_json_seasons = "https://mssproxy.motorsportstats.com/web/3.0.0/seasons/";
+    private final String url_json_sessions = "https://mssproxy.motorsportstats.com/web/3.0.0/sessions/";
+    private final String base_url = "https://results.motorsportstats.com/";
 
     protected String getUrl_json_seasons() {
         return url_json_seasons;
