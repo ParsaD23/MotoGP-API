@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,11 @@ class ChampionshipStandingsReader {
             double points = constructor.getDouble("totalPoints");
             List<Double> results = new ArrayList<>();
             for(Object e : constructor.getJSONArray("eventPoints").toList())
-                results.add((Double) e);
+                try {
+                    results.add(((BigDecimal) e).doubleValue());
+                } catch (Exception exception) {
+                    results.add(0.0);
+                }
 
             result.add(new ConstructorStandings(name, position, points, results));
         }
@@ -126,7 +131,11 @@ class ChampionshipStandingsReader {
             double points = team.getDouble("totalPoints");
             List<Double> results = new ArrayList<>();
             for(Object e : team.getJSONArray("eventPoints").toList())
-                results.add((Double) e);
+                try {
+                    results.add(((BigDecimal) e).doubleValue());
+                } catch (Exception exception) {
+                    results.add(0.0);
+                }
             result.add(new TeamStandings(name, position, points, results));
         }
         return result;
@@ -143,7 +152,11 @@ class ChampionshipStandingsReader {
             double points = rider.getDouble("totalPoints");
             List<Double> results = new ArrayList<>();
             for(Object e : rider.getJSONArray("eventPoints").toList())
-                results.add((Double) e);
+                try {
+                    results.add(((BigDecimal) e).doubleValue());
+                } catch (Exception exception) {
+                    results.add(0.0);
+                }
 
             result.add(new RiderStandings(name, position, points, results));
         }
