@@ -101,13 +101,16 @@ class ChampionshipStandingsReader {
         List<ConstructorStandings> result = new ArrayList<>();
 
         for (int i = 0; i<standings.length(); i++){
-            JSONObject rider = standings.getJSONObject(i);
+            JSONObject constructor = standings.getJSONObject(i);
 
-            String name = rider.getJSONObject("team").getString("name");
-            int position = rider.getInt("position");
-            double points = rider.getDouble("totalPoints");
+            String name = constructor.getJSONObject("team").getString("name");
+            int position = constructor.getInt("position");
+            double points = constructor.getDouble("totalPoints");
+            List<Double> results = new ArrayList<>();
+            for(Object e : constructor.getJSONArray("eventPoints").toList())
+                results.add((Double) e);
 
-            result.add(new ConstructorStandings(name, position, points));
+            result.add(new ConstructorStandings(name, position, points, results));
         }
         return result;
     }
@@ -116,13 +119,15 @@ class ChampionshipStandingsReader {
         List<TeamStandings> result = new ArrayList<>();
 
         for (int i = 0; i<standings.length(); i++){
-            JSONObject rider = standings.getJSONObject(i);
+            JSONObject team = standings.getJSONObject(i);
 
-            String name = rider.getJSONObject("team").getString("name");
-            int position = rider.getInt("position");
-            double points = rider.getDouble("totalPoints");
-
-            result.add(new TeamStandings(name, position, points));
+            String name = team.getJSONObject("team").getString("name");
+            int position = team.getInt("position");
+            double points = team.getDouble("totalPoints");
+            List<Double> results = new ArrayList<>();
+            for(Object e : team.getJSONArray("eventPoints").toList())
+                results.add((Double) e);
+            result.add(new TeamStandings(name, position, points, results));
         }
         return result;
     }
@@ -136,8 +141,11 @@ class ChampionshipStandingsReader {
             String name = rider.getJSONObject("driver").getString("name");
             int position = rider.getInt("position");
             double points = rider.getDouble("totalPoints");
+            List<Double> results = new ArrayList<>();
+            for(Object e : rider.getJSONArray("eventPoints").toList())
+                results.add((Double) e);
 
-            result.add(new RiderStandings(name, position, points));
+            result.add(new RiderStandings(name, position, points, results));
         }
         return result;
     }

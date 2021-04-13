@@ -1,5 +1,7 @@
 package com.github.parsad23.motogpapi.domain;
 
+import java.util.List;
+
 /**
  * Represents the information of a constructor in the constructor standings
  */
@@ -11,16 +13,12 @@ public class ConstructorStandings extends ElementStandings{
      * @param position Position of the constructor in the standings
      * @param points Total points of the constructor in the standings
      */
-    public ConstructorStandings(String name, int position, double points) {
-        super(name, position, points);
+    public ConstructorStandings(String name, int position, double points, List<Double> results) {
+        super(name, position, points, results);
     }
 
     @Override
     public String toString() {
-        return "ConstructorStandings{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                ", points=" + points +
-                '}';
+        return "ConstructorStandings" + super.toString();
     }
 }
