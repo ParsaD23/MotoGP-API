@@ -67,7 +67,7 @@ Import the following libraries in your project:
 
 ### Installing with Maven
 
-First, you need to download the latest motogpapi-x.x.jar release (in the [release section](https://github.com/ParsaD23/MotoGP-API/releases)) and the then install it in your local maven repository. Run the following command:
+First, you need to download the latest motogpapi-x.x.jar release (in the [release section](https://github.com/ParsaD23/MotoGP-API/releases)) and then install it in your local maven repository. Run the following command:
 
 ```shell
 mvn install:install-file
