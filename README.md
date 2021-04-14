@@ -65,7 +65,7 @@ Import the following libraries in your project:
 * JSON: [download](https://repo1.maven.org/maven2/org/json/json/20190722/json-20190722.jar)
 * Jsoup: [download](https://jsoup.org/packages/jsoup-1.13.1.jar)
 
-### Instalilng with Maven
+### Installing with Maven
 
 First, you need to download the latest motogpapi-x.x.jar release (in the [release section](https://github.com/ParsaD23/MotoGP-API/releases)) and the then install it in your local maven repository. Run the following command:
 
