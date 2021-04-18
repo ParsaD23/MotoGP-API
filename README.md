@@ -1,3 +1,5 @@
+*In case of bugs/problems just let me know by sending me an email or opening an issue (they may be caused by updates in the MotorsportStats website) and I will release a new version of the library as soon as possible.*
+
 # MotoGP-API
 
 Current version: `3.0.2` \
