@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 class URLGenerator {
@@ -82,7 +83,7 @@ class URLGenerator {
         int found = 0;
         try {
             for (Element temp : Jsoup.connect(sessionResultsPageURL).get().getElementsByClass("_1CDKX").get(1).children()) {
-                if (temp.text().equals(session.getValue())) {
+                if (session.getValues().contains(temp.text().toLowerCase())) {
                     mainResult = temp;
                     found++;
                     break;
@@ -93,7 +94,7 @@ class URLGenerator {
         }
 
         if (found == 0){
-            System.err.println("\nThe requested session or data (" + session.getValue() + ") is not available for the " + year + " season...");
+            System.err.println("\nThe requested session or data (" + session.getValues().get(0).toUpperCase() + ") is not available for the " + year + " season...");
         }
 
         String[] temp;
