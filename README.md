@@ -57,31 +57,35 @@ The current version has been developed and tested to read the data from [Motorsp
 
 ## Getting Started
 
-Import the latest motogpapi-x.x.jar release into your proejct (in the [release section](https://github.com/ParsaD23/MotoGP-API/releases)).
+### Installing without Maven
 
-### Prerequisites (without Maven)
+Import the following libraries in your project:
 
-The following libraries are required:
-
+* the latest motogpapi-x.x.jar release (in the [release section](https://github.com/ParsaD23/MotoGP-API/releases))
 * JSON: [download](https://repo1.maven.org/maven2/org/json/json/20190722/json-20190722.jar)
 * Jsoup: [download](https://jsoup.org/packages/jsoup-1.13.1.jar)
 
-Import them into your project.
+### Installing with Maven
 
-### Prerequisites (with Maven)
+First, you need to download the latest motogpapi-x.x.jar release (in the [release section](https://github.com/ParsaD23/MotoGP-API/releases)) and then install it in your local maven repository. Run the following command:
 
-Add the following Maven dependencies:
+```shell
+mvn install:install-file
+  -Dfile=<path-to-jar-file>
+  -DgroupId="com.github.parsad23"
+  -DartifactId="motogpapi"
+  -Dversion="3.0.1"
+  -Dpackaging="jar"
+  -DgeneratePom=true
+```
+
+Then add the motogpapi library to the dependencies in the `pom.xml` file of your project:
 
 ```xml
 <dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20210307</version>
-</dependency>
-<dependency>
-    <groupId>org.jsoup</groupId>
-    <artifactId>jsoup</artifactId>
-    <version>1.13.1</version>
+    <groupId>com.github.parsad23</groupId>
+    <artifactId>motogpapi</artifactId>
+    <version>3.0.1</version>
 </dependency>
 ```
 
