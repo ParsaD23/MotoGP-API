@@ -1,8 +1,8 @@
+<h1 align="center">MotoGP-API</h1>
+
 <p align="center">
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ParsaD23/MotoGP-API?color=light%20green"> <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/ParsaD23/MotoGP-API/total?color=light%20green"> 
 </p>
-
-# MotoGP-API
 
 **MotoGP-API** is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
 The current version has been developed and tested to read the data from [Motorsport Stats](https://results.motorsportstats.com/series/motogp/).
