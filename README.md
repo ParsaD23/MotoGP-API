@@ -2,8 +2,8 @@
 
 # MotoGP-API
 
-Current version: `3.0.2` \
-Latest update: April 18, 2021
+Current version: `3.0.3` \
+Latest update: April 26, 2021
 
 ## Contents
 
@@ -64,7 +64,7 @@ The current version has been developed and tested to read the data from [Motorsp
 Import the following libraries in your project:
 
 * the latest motogpapi-x.x.jar release (in the [release section](https://github.com/ParsaD23/MotoGP-API/releases))
-* JSON: [download](https://repo1.maven.org/maven2/org/json/json)
+* Gson: [download](https://jar-download.com/artifacts/com.google.code.gson/gson/2.8.6)
 * Jsoup: [download](https://jsoup.org/packages/jsoup-1.13.1.jar)
 
 ### Installing with Maven
@@ -76,7 +76,7 @@ mvn install:install-file
   -Dfile=<path-to-jar-file>
   -DgroupId="com.github.parsad23"
   -DartifactId="motogpapi"
-  -Dversion="3.0.2"
+  -Dversion="3.0.3"
   -Dpackaging="jar"
   -DgeneratePom=true
 ```
@@ -87,7 +87,7 @@ Then add the motogpapi library to the dependencies in the `pom.xml` file of your
 <dependency>
     <groupId>com.github.parsad23</groupId>
     <artifactId>motogpapi</artifactId>
-    <version>3.0.2</version>
+    <version>3.0.3</version>
 </dependency>
 ```
 

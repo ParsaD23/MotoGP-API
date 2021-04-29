@@ -3,8 +3,9 @@ package com.github.parsad23.motogpapi.reader;
 import com.github.parsad23.motogpapi.domain.Category;
 import com.github.parsad23.motogpapi.domain.Session;
 import com.github.parsad23.motogpapi.exceptions.DataNotAvailableException;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
@@ -120,28 +121,28 @@ class URLGenerator {
             url = url_json_seasons + category.toString().toLowerCase() + "-" + year + "/races/";
         String referer = base_url + "series/" + category.toString().toLowerCase() + "/season/" + year + "/";
 
-        JSONArray races;
+        JsonArray races;
         try{
-            races = new JSONArray(JsonReader.readJsonFromUrl(url, referer, base_url));
+            races = JsonParser.parseString(JsonReader.readJsonFromUrl(url, referer, base_url)).getAsJsonArray();
         } catch (IOException e){
             throw new DataNotAvailableException("Unable to read the JSONArray containing the races: empty String returned...");
         }
 
         if (raceCode != null) {
-            for (int i = 0; i<races.length(); i++) {
-                JSONObject event = races.getJSONObject(i).getJSONObject("event");
-                if (event.getString("code").equalsIgnoreCase(raceCode)) {
+            for (int i = 0; i<races.size(); i++) {
+                JsonObject event = races.get(i).getAsJsonObject().get("event").getAsJsonObject();
+                if (event.get("code").getAsString().equalsIgnoreCase(raceCode)) {
                     //System.out.println("Selected raceCode: " + event.getString("code"));
-                    grandprix = event.getString("uuid");
+                    grandprix = event.get("uuid").getAsString();
                     break;
                 }
             }
         } else if (raceNumber > 0) {
-            for (int i = 0; i < races.length(); i++) {
-                JSONObject event = races.getJSONObject(i).getJSONObject("event");
+            for (int i = 0; i < races.size(); i++) {
+                JsonObject event = races.get(i).getAsJsonObject().get("event").getAsJsonObject();
                 if (raceNumber == i + 1) {
                     //System.out.println("Selected raceCode: " + event.getString("code"));
-                    grandprix = event.getString("uuid");
+                    grandprix = event.get("uuid").getAsString();
                     break;
                 }
             }
