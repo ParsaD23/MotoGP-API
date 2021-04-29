@@ -1,9 +1,11 @@
-*In case of bugs/problems just let me know by sending me an email or opening an issue (they may be caused by updates in the MotorsportStats website) and I will release a new version of the library as soon as possible.*
+<p align="center">
+  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ParsaD23/MotoGP-API?color=light%20green"> <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/ParsaD23/MotoGP-API/total?color=light%20green"> 
+</p>
 
 # MotoGP-API
 
-Current version: `3.0.3` \
-Latest update: April 26, 2021
+**MotoGP-API** is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
+The current version has been developed and tested to read the data from [Motorsport Stats](https://results.motorsportstats.com/series/motogp/).
 
 ## Contents
 
@@ -13,8 +15,26 @@ Latest update: April 26, 2021
 * [Usage](https://github.com/ParsaD23/MotoGP-API/wiki/3.-Usage)
 * [Release History](https://github.com/ParsaD23/MotoGP-API/wiki/4.-Release-History)
 
-**MotoGP-API** is a library that reads the results of the MotoGP, 500cc, Moto2 and Moto3 classes from a website. 
-The current version has been developed and tested to read the data from [Motorsport Stats](https://results.motorsportstats.com/series/motogp/).
+## Available data
+
+* Classes
+  
+  * Moto3: 2012 - today
+  * Moto2: 2010 - today
+  * MotoGP/500cc: 1949 - today
+
+* Sessions
+  
+  * Free practices
+  * Qualifying practices
+  * Grid
+  * Race
+
+* Riders' championship standings
+
+* Constructors' championship standings
+
+* Teams' championship standings
 
 **Race results example (2019 MotoGP Qatar Grand Prix):**
 
@@ -36,26 +56,7 @@ The current version has been developed and tested to read the data from [Motorsp
 | 4   | Álex Rins        | 205.0  | `[13.0, 11.0, 25.0, 20.0, ...]` |
 | 5   | Fabio Quartararo | 192.0  | `[0.0, 8.0, 9.0, 0.0, ...]`     |
 
-### Available data
 
-* Classes
-  
-  * Moto3: 2012 - today
-  * Moto2: 2010 - today
-  * MotoGP/500cc: 1949 - today
-
-* Sessions
-  
-  * Free practices
-  * Qualifying practices
-  * Grid
-  * Race
-
-* Riders' championship standings
-
-* Constructors' championship standings
-
-* Teams' championship standings
 
 ## Getting Started
 
