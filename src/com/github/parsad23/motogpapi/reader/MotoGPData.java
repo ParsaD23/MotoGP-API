@@ -12,14 +12,6 @@ import java.util.List;
  */
 public class MotoGPData {
 
-	private final SessionResultsReader sessionResultsReader;
-	private final ChampionshipStandingsReader championshipStandingsReader;
-
-	public MotoGPData () throws IOException {
-		sessionResultsReader = new SessionResultsReader();
-		championshipStandingsReader = new ChampionshipStandingsReader();
-	}
-
 	/**
 	 * Returns the requested session's results
 	 * @param category
@@ -34,7 +26,7 @@ public class MotoGPData {
 	 */
 	public List<RiderSession> getSessionResults(Category category, int year, String raceCode, Session session) throws IOException, DataNotAvailableException {
 		checkParameters(category, year);
-		return sessionResultsReader.getSessionResults(category, year, raceCode, -1, session);
+		return SessionResultsReader.getSessionResults(category, year, raceCode, -1, session);
 	}
 
 	/**
@@ -50,7 +42,7 @@ public class MotoGPData {
 	 */
 	public List<RiderSession> getSessionResults(Category category, int year, int raceNumber, Session session) throws IOException, DataNotAvailableException {
 		checkParameters(category, year, raceNumber);
-		return sessionResultsReader.getSessionResults(category, year, null, raceNumber, session);
+		return SessionResultsReader.getSessionResults(category, year, null, raceNumber, session);
 	}
 
 	/**
@@ -64,7 +56,7 @@ public class MotoGPData {
 	 */
 	public List<RiderStandings> getRidersStandings(Category category, int year) throws IOException, DataNotAvailableException {
 		checkParameters(category, year);
-		return championshipStandingsReader.getRidersStandings(category, year);
+		return ChampionshipStandingsReader.getRidersStandings(category, year);
 	}
 
 	/**
@@ -78,7 +70,7 @@ public class MotoGPData {
 	 */
 	public List<ConstructorStandings> getConstructorsStandings(Category category, int year) throws IOException, DataNotAvailableException {
 		checkParameters(category, year);
-		return championshipStandingsReader.getConstructorsStandings(category, year);
+		return ChampionshipStandingsReader.getConstructorsStandings(category, year);
 	}
 
 	/**
@@ -92,7 +84,7 @@ public class MotoGPData {
 	 */
 	public List<TeamStandings> getTeamsStandings(Category category, int year) throws IOException, DataNotAvailableException {
 		checkParameters(category, year);
-		return championshipStandingsReader.getTeamsStandings(category, year);
+		return ChampionshipStandingsReader.getTeamsStandings(category, year);
 	}
 
 	/**
@@ -108,7 +100,7 @@ public class MotoGPData {
 	 */
 	public List<RiderStandings> getRidersStandings(Category category, int year, String raceCode) throws IOException, DataNotAvailableException {
 		checkParameters(category, year);
-		return championshipStandingsReader.getRidersStandings(category, year, -1, raceCode);
+		return ChampionshipStandingsReader.getRidersStandings(category, year, -1, raceCode);
 	}
 
 	/**
@@ -123,7 +115,7 @@ public class MotoGPData {
 	 */
 	public List<RiderStandings> getRidersStandings(Category category, int year, int raceNumber) throws IOException, DataNotAvailableException {
 		checkParameters(category, year, raceNumber);
-		return championshipStandingsReader.getRidersStandings(category, year, raceNumber, null);
+		return ChampionshipStandingsReader.getRidersStandings(category, year, raceNumber, null);
 	}
 
 	/**
@@ -139,7 +131,7 @@ public class MotoGPData {
 	 */
 	public List<ConstructorStandings> getConstructorsStandings(Category category, int year, String raceCode) throws IOException, DataNotAvailableException {
 		checkParameters(category, year);
-		return championshipStandingsReader.getConstructorsStandings(category, year, -1, raceCode);
+		return ChampionshipStandingsReader.getConstructorsStandings(category, year, -1, raceCode);
 	}
 
 	/**
@@ -154,7 +146,7 @@ public class MotoGPData {
 	 */
 	public List<ConstructorStandings> getConstructorsStandings(Category category, int year, int raceNumber) throws IOException, DataNotAvailableException {
 		checkParameters(category, year, raceNumber);
-		return championshipStandingsReader.getConstructorsStandings(category, year, raceNumber, null);
+		return ChampionshipStandingsReader.getConstructorsStandings(category, year, raceNumber, null);
 	}
 
 	/**
@@ -170,7 +162,7 @@ public class MotoGPData {
 	 */
 	public List<TeamStandings> getTeamsStandings(Category category, int year, String raceCode) throws IOException, DataNotAvailableException {
 		checkParameters(category, year);
-		return championshipStandingsReader.getTeamsStandings(category, year, -1, raceCode);
+		return ChampionshipStandingsReader.getTeamsStandings(category, year, -1, raceCode);
 	}
 
 	/**
@@ -185,7 +177,7 @@ public class MotoGPData {
 	 */
 	public List<TeamStandings> getTeamsStandings(Category category, int year, int raceNumber) throws IOException, DataNotAvailableException {
 		checkParameters(category, year, raceNumber);
-		return championshipStandingsReader.getTeamsStandings(category, year, raceNumber, null);
+		return ChampionshipStandingsReader.getTeamsStandings(category, year, raceNumber, null);
 	}
 
 	private void checkParameters(Category category, int year, int raceNumber) throws IOException {

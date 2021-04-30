@@ -1,43 +1,29 @@
 package com.github.parsad23.motogpapi.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Represents the sessions
  */
 public enum Session {
-	FP1("1st practice", "free practice 1", "1st free practice"),
-	FP2("2nd practice", "free practice 2", "2nd free practice"),
-	FP3("3rd practice", "free practice 3", "3rd free practice"),
-	FP4("4th practice", "free practice 4", "4th free practice"),
-	QP1("1st qualifying", "qualifying 1"),
-	QP2("2nd qualifying", "qualifying 2"),
-	QP("qualifying", "combined qualifying"),
-	GRID("grid"),
-	WARMUP("warm Up", "warm-up"),
-	RACE("race");
+	FP1(new String[]{"1st practice", "free practice 1", "1st free practice", "practice 1"}),
+	FP2(new String[]{"2nd practice", "free practice 2", "2nd free practice", "practice 2"}),
+	FP3(new String[]{"3rd practice", "free practice 3", "3rd free practice", "practice 3"}),
+	FP4(new String[]{"4th practice", "free practice 4", "4th free practice", "practice 4"}),
+	QP1(new String[]{"1st qualifying", "qualifying 1"}),
+	QP2(new String[]{"2nd qualifying", "qualifying 2"}),
+	QP(new String[]{"qualifying", "combined qualifying"}),
+	GRID(new String[]{"grid"}),
+	WARMUP(new String[]{"warm Up", "warm-up"}),
+	RACE(new String[]{"race"});
 
-	private String value1 = "";
-	private String value2 = "";
-	private String value3 = "";
+	private String[] values;
 
-	Session(String value1) {
-		this.value1 = value1;
-	}
-	Session(String value1, String value2) {
-		this.value1 = value1; this.value2 = value2;
-	}
-	Session(String value1, String value2, String value3) {
-		this.value1 = value1; this.value2 = value2; this.value3 = value3;
-	}
+	Session(String[] values) { this.values = values; }
 
 	public List<String> getValues(){
-		List<String> values = new ArrayList<>();
-		values.add(value1);
-		values.add(value2);
-		values.add(value3);
-		return values;
+		return Arrays.asList(values);
 	}
 }
 

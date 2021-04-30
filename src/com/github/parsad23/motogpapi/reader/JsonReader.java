@@ -24,10 +24,10 @@ class JsonReader {
 //		con.setRequestProperty("Accept", "*/*");
 //		con.setRequestProperty("Accept-Language", "it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3");
 //		con.setRequestProperty("Accept-Encoding", "gzip, deflate, br");
-//		con.setRequestProperty("Connection", "keep-alive");
+		con.setRequestProperty("Connection", "keep-alive");
 //		con.setRequestProperty("Cache-Control", "max-age=0");
 
-		int responseCode = con.getResponseCode();
+		//int responseCode = con.getResponseCode();
 		//System.out.println("\nSending 'GET' request to URL : " + url);
 		//System.out.println("Response Code : " + responseCode);
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));

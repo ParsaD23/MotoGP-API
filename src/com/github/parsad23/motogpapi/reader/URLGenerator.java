@@ -10,73 +10,59 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Properties;
 
 class URLGenerator {
 
-    private final String url_json_seasons = "https://mssproxy.motorsportstats.com/web/3.0.0/seasons/";
-    private final String url_json_sessions = "https://mssproxy.motorsportstats.com/web/3.0.0/sessions/";
-    private final String base_url = "https://results.motorsportstats.com/";
+    protected static final String url_json_seasons = "https://mssproxy.motorsportstats.com/web/3.0.0/seasons/";
+    protected static final String url_json_sessions = "https://mssproxy.motorsportstats.com/web/3.0.0/sessions/";
+    protected static final String base_url = "https://results.motorsportstats.com/";
 
-    protected String getUrl_json_seasons() {
-        return url_json_seasons;
-    }
-
-    protected String getUrl_json_sessions() {
-        return url_json_sessions;
-    }
-
-    protected String getBase_url() {
-        return base_url;
-    }
-
-    protected String getRidersChampionshipURL(Category category, int year){
+    protected static String getRidersChampionshipURL(Category category, int year){
         if (category == Category.MotoGP)
             return url_json_seasons + year + "-" + category.toString().toLowerCase() + "/standings/drivers/";
         return url_json_seasons + category.toString().toLowerCase() + "-" + year + "/standings/drivers/";
     }
 
-    protected String getConstructorsChampionshipURL(Category category, int year){
+    protected static String getConstructorsChampionshipURL(Category category, int year){
         if (category == Category.MotoGP)
             return url_json_seasons + year + "-" + category.toString().toLowerCase() + "/standings/constructors/";
         return url_json_seasons + category.toString().toLowerCase() + "-" + year + "/standings/constructors/";
     }
 
-    protected String getTeamsChampionshipURL(Category category, int year){
+    protected static String getTeamsChampionshipURL(Category category, int year){
         if (category == Category.MotoGP)
             return url_json_seasons + year + "-" + category.toString().toLowerCase() + "/standings/teams/";
         return url_json_seasons + category.toString().toLowerCase() + "-" + year + "/standings/teams/";
     }
 
-    protected String getRidersChampionshipURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
+    protected static String getRidersChampionshipURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
         String eventCode = getEventCode(category, year, raceNumber, raceCode);
         if (category == Category.MotoGP)
             return url_json_seasons + year + "-" + category.toString().toLowerCase() + "/standings/drivers/?eventSlug="+eventCode;
         return url_json_seasons + category.toString().toLowerCase() + "-" + year + "/standings/drivers/?eventSlug="+eventCode;
     }
 
-    protected String getConstructorsChampionshipURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException{
+    protected static String getConstructorsChampionshipURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException{
         String eventCode = getEventCode(category, year, raceNumber, raceCode);
         if (category == Category.MotoGP)
             return url_json_seasons + year + "-" + category.toString().toLowerCase() + "/standings/constructors/?eventSlug="+eventCode;
         return url_json_seasons + category.toString().toLowerCase() + "-" + year + "/standings/constructors/?eventSlug="+eventCode;
     }
 
-    protected String getTeamsChampionshipURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
+    protected static String getTeamsChampionshipURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
         String eventCode = getEventCode(category, year, raceNumber, raceCode);
         if (category == Category.MotoGP)
             return url_json_seasons + year + "-" + category.toString().toLowerCase() + "/standings/teams/?eventSlug="+eventCode;
         return url_json_seasons + category.toString().toLowerCase() + "-" + year + "/standings/teams/?eventSlug="+eventCode;
     }
 
-    protected String getSessionResultsPageURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
+    protected static String getSessionResultsPageURL(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
         String grandprix = getEventCode(category, year, raceNumber, raceCode);
 
         return base_url + "results/" + grandprix + "/";
     }
 
-    protected String getSessionResultsURL(Category category, int year, Session session, int raceNumber, String raceCode) throws DataNotAvailableException {
+    protected static String getSessionResultsURL(Category category, int year, Session session, int raceNumber, String raceCode) throws DataNotAvailableException {
         String sessionResultsPageURL = getSessionResultsPageURL(category, year, raceNumber, raceCode) + "classification/";
         Element mainResult = null;
 
@@ -111,7 +97,7 @@ class URLGenerator {
         return url_json_sessions + urlCode + "/classification";
     }
 
-    protected String getEventCode(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
+    protected static String getEventCode(Category category, int year, int raceNumber, String raceCode) throws DataNotAvailableException {
         String url;
         String grandprix = "";
 
