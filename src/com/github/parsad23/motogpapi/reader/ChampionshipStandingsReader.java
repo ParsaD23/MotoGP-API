@@ -48,8 +48,8 @@ class ChampionshipStandingsReader {
         JsonArray result;
 
         try {
-            String refer = URLGenerator.base_url + "series/" + category.toString().toLowerCase();
-            result = (JsonParser.parseString(JsonReader.readJsonFromUrl(url, refer, URLGenerator.base_url)).getAsJsonObject()).getAsJsonArray("standings");
+            String referer = URLGenerator.base_url + "results/" + category.toString().toLowerCase();
+            result = (JsonParser.parseString(JsonReader.readJsonFromUrl(url, referer, URLGenerator.base_url)).getAsJsonObject()).getAsJsonArray("standings");
 
         } catch (IOException e) {
             throw new DataNotAvailableException("The requested standings do not exist or are not available");

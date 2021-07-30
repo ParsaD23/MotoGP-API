@@ -18,7 +18,7 @@ class JsonReader {
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection)obj.openConnection();
 
-		con.setRequestProperty("User-Agent", " Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0");
+		con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0");
 		con.setRequestProperty("Referer", refererUrl);
 		con.setRequestProperty("Origin", originUrl);
 //		con.setRequestProperty("Accept", "*/*");
