@@ -77,7 +77,7 @@ mvn install:install-file
   -Dfile=<path-to-jar-file>
   -DgroupId="com.github.parsad23"
   -DartifactId="motogpapi"
-  -Dversion="3.0.3"
+  -Dversion="3.0.4"
   -Dpackaging="jar"
   -DgeneratePom=true
 ```
@@ -88,7 +88,7 @@ Then add the motogpapi library to the dependencies in the `pom.xml` file of your
 <dependency>
     <groupId>com.github.parsad23</groupId>
     <artifactId>motogpapi</artifactId>
-    <version>3.0.3</version>
+    <version>3.0.4</version>
 </dependency>
 ```
 
