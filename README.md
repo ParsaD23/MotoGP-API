@@ -1,3 +1,5 @@
+<p align="center"><i>:construction: The library is not currently working due to major changes in the website it reads the data from.<br>I may update it in the future but contributions are welcomed :smiley: </i></p>
+
 <h1 align="center">MotoGP-API</h1>
 
 <p align="center">
